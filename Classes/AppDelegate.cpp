@@ -1,5 +1,5 @@
 #include "AppDelegate.h"
-#include "MainLayer.h"
+#include "space/SpaceScene.h"
 
 USING_NS_CC;
 
@@ -73,11 +73,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
 
     register_all_packages();
 
-    auto scene = Scene::create();
-    auto layer = MainLayer::create();
-
-    scene->addChild(layer);
-
+    auto scene = Space::SpaceScene::create();
     // run
     director->runWithScene(scene);
 

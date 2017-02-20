@@ -10,6 +10,9 @@
     <Filter Include="src">
       <UniqueIdentifier>{bb6c862e-70e9-49d9-81b7-3829a6f50471}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\space">
+      <UniqueIdentifier>{1363b031-6119-4e77-b54f-45d95811c78c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -18,8 +21,11 @@
     <ClCompile Include="..\Classes\AppDelegate.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\MainLayer.cpp">
-      <Filter>src</Filter>
+    <ClCompile Include="..\Classes\space\SpaceScene.cpp">
+      <Filter>src\space</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\space\BKLayer.cpp">
+      <Filter>src\space</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -29,8 +35,11 @@
     <ClInclude Include="..\Classes\AppDelegate.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\MainLayer.h">
-      <Filter>src</Filter>
+    <ClInclude Include="..\Classes\space\SpaceScene.h">
+      <Filter>src\space</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\space\BKLayer.h">
+      <Filter>src\space</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
