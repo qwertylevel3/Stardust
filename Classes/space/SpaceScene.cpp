@@ -1,5 +1,6 @@
 #include "SpaceScene.h"
 #include "physics/CCPhysicsWorld.h"
+#include "2d/CCCamera.h"
 #include "BKLayer.h"
 #include "MainLayer.h"
 #include "ZOrder.h"

@@ -24,7 +24,7 @@ namespace Space
 
 		CC_SYNTHESIZE(int, maxSpeed, MaxSpeed);
 		CC_SYNTHESIZE(int, power, Power);
-		CC_SYNTHESIZE(int, sensitivity, Sensitivity);
+		CC_SYNTHESIZE(float, sensitivity, Sensitivity);
 
 		bool accelerator;
 		bool rudderLeft;

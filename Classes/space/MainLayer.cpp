@@ -86,5 +86,4 @@ void Space::MainLayer::handleKeyReleased(cocos2d::EventKeyboard::KeyCode keyCode
 	{
 		player->rudderRightSwitch(false);
 	}
-
 }
