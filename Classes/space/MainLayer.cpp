@@ -1,5 +1,5 @@
 #include "MainLayer.h"
-#include "SpaceEntity.h"
+#include "SpaceCraft.h"
 #include "base/CCDirector.h"
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventKeyboard.h"
@@ -31,11 +31,10 @@ bool Space::MainLayer::init()
 
 	//////////////////////////////////////////////////////////////////////////
 
-	player = SpaceEntity::create();
-	player->initWithFile("space/testShip.png");
-	player->addComponent(cocos2d::PhysicsBody::createCircle(player->getContentSize().width / 2));
+	player = SpaceCraft::create();
 	player->setPosition(origin.x + visibleSize.width / 2,
 		origin.y + visibleSize.height / 2);
+
 	this->addChild(player);
 
 
@@ -46,15 +45,46 @@ bool Space::MainLayer::init()
 		this->handleKeyPressed(keyCode);
 		//Player::getInstance()->handleKeyPressed(keyCode);
 	};
+	listener->onKeyReleased = [=](cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event* event)
+	{
+		this->handleKeyReleased(keyCode);
+		//Player::getInstance()->handleKeyPressed(keyCode);
+	};
+
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
+	return true;
 }
 
 void Space::MainLayer::handleKeyPressed(cocos2d::EventKeyboard::KeyCode keyCode)
 {
+	static int count = 0;
 	if (keyCode==cocos2d::EventKeyboard::KeyCode::KEY_UP_ARROW)
 	{
-		player->getPhysicsBody()->applyForce(cocos2d::Vec2(0,100000));
-		//player->getPhysicsBody()->setVelocity(cocos2d::Vec2(0, 10));
-		//player->getPhysicsBody()->applyImpulse(cocos2d::Vec2(0, 10000));
+		player->engineSwitch(true);
 	}
+	else if (keyCode == cocos2d::EventKeyboard::KeyCode::KEY_LEFT_ARROW)
+	{
+		player->rudderLeftSwitch(true);
+	}
+	else if (keyCode == cocos2d::EventKeyboard::KeyCode::KEY_RIGHT_ARROW)
+	{
+		player->rudderRightSwitch(true);
+	}
+}
+
+void Space::MainLayer::handleKeyReleased(cocos2d::EventKeyboard::KeyCode keyCode)
+{
+	if (keyCode==cocos2d::EventKeyboard::KeyCode::KEY_UP_ARROW)
+	{
+		player->engineSwitch(false);
+	}
+	else if (keyCode == cocos2d::EventKeyboard::KeyCode::KEY_LEFT_ARROW)
+	{
+		player->rudderLeftSwitch(false);
+	}
+	else if (keyCode == cocos2d::EventKeyboard::KeyCode::KEY_RIGHT_ARROW)
+	{
+		player->rudderRightSwitch(false);
+	}
+
 }

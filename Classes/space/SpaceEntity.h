@@ -9,7 +9,8 @@ namespace Space
 	public:
 		SpaceEntity();
 		~SpaceEntity();
-		CREATE_FUNC(SpaceEntity);
+		bool init();
+//		CREATE_FUNC(SpaceEntity);
 
 	protected:
 

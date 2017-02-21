@@ -29,6 +29,7 @@
     </ClCompile>
     <ClCompile Include="..\Classes\space\SpaceEntity.cpp" />
     <ClCompile Include="..\Classes\space\MainLayer.cpp" />
+    <ClCompile Include="..\Classes\space\SpaceCraft.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -45,6 +46,10 @@
     </ClInclude>
     <ClInclude Include="..\Classes\space\SpaceEntity.h" />
     <ClInclude Include="..\Classes\space\MainLayer.h" />
+    <ClInclude Include="..\Classes\space\ZOrder.h">
+      <Filter>src\space</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\space\SpaceCraft.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game.rc">

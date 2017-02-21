@@ -2,6 +2,7 @@
 #include "physics/CCPhysicsWorld.h"
 #include "BKLayer.h"
 #include "MainLayer.h"
+#include "ZOrder.h"
 
 
 
@@ -19,10 +20,8 @@ bool Space::SpaceScene::init()
 	Scene::init();
 	initWithPhysics();
 	_physicsWorld->setGravity(cocos2d::Vec2(0, 0));
-	addChild(BKLayer::create(),0);
-
-
-	addChild(MainLayer::create(),1);
+	addChild(BKLayer::create(),BKLayerZOrder);
+	addChild(MainLayer::create(),MainLayerZOrder);
 	return true;
 }
 
