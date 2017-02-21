@@ -1,6 +1,7 @@
 #include "SpaceScene.h"
 #include "physics/CCPhysicsWorld.h"
 #include "BKLayer.h"
+#include "MainLayer.h"
 
 
 
@@ -17,7 +18,11 @@ bool Space::SpaceScene::init()
 {
 	Scene::init();
 	initWithPhysics();
-	addChild(BKLayer::create());
+	_physicsWorld->setGravity(cocos2d::Vec2(0, 0));
+	addChild(BKLayer::create(),0);
+
+
+	addChild(MainLayer::create(),1);
 	return true;
 }
 

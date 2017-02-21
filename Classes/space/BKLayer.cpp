@@ -2,9 +2,6 @@
 #include "SimpleAudioEngine.h"
 #include "base/CCDirector.h"
 #include "2d/CCSprite.h"
-#include "base/CCEventListenerKeyboard.h"
-#include "base/CCEventKeyboard.h"
-#include "base/CCEventDispatcher.h"
 
 bool Space::BKLayer::init()
 {
@@ -25,22 +22,7 @@ bool Space::BKLayer::init()
 		origin.y + visibleSize.height / 2);
 
 
-	//////////////////////////////////////////////////////////////////////////
-
-	auto listener = cocos2d::EventListenerKeyboard::create();
-	listener->onKeyPressed = [=](cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event* event)
-	{
-		this->handleKeyPressed(keyCode);
-		//Player::getInstance()->handleKeyPressed(keyCode);
-	};
-	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
-
 
     return true;
 }
 
-
-void Space::BKLayer::handleKeyPressed(cocos2d::EventKeyboard::KeyCode keyCode)
-{
-
-}

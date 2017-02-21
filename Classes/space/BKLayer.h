@@ -9,8 +9,6 @@ namespace Space
 	public:
 		virtual bool init();
 
-		void handleKeyPressed(cocos2d::EventKeyboard::KeyCode keyCode);
-
 		// implement the "static create()" method manually
 		CREATE_FUNC(BKLayer);
 	protected:

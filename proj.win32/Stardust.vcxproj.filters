@@ -27,6 +27,8 @@
     <ClCompile Include="..\Classes\space\BKLayer.cpp">
       <Filter>src\space</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\space\SpaceEntity.cpp" />
+    <ClCompile Include="..\Classes\space\MainLayer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -41,6 +43,8 @@
     <ClInclude Include="..\Classes\space\BKLayer.h">
       <Filter>src\space</Filter>
     </ClInclude>
+    <ClInclude Include="..\Classes\space\SpaceEntity.h" />
+    <ClInclude Include="..\Classes\space\MainLayer.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game.rc">
