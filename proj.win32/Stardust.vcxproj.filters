@@ -27,9 +27,15 @@
     <ClCompile Include="..\Classes\space\BKLayer.cpp">
       <Filter>src\space</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\space\SpaceEntity.cpp" />
-    <ClCompile Include="..\Classes\space\MainLayer.cpp" />
-    <ClCompile Include="..\Classes\space\SpaceCraft.cpp" />
+    <ClCompile Include="..\Classes\space\SpaceEntity.cpp">
+      <Filter>src\space</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\space\SpaceCraft.cpp">
+      <Filter>src\space</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\space\MainLayer.cpp">
+      <Filter>src\space</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -44,12 +50,18 @@
     <ClInclude Include="..\Classes\space\BKLayer.h">
       <Filter>src\space</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\space\SpaceEntity.h" />
-    <ClInclude Include="..\Classes\space\MainLayer.h" />
     <ClInclude Include="..\Classes\space\ZOrder.h">
       <Filter>src\space</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\space\SpaceCraft.h" />
+    <ClInclude Include="..\Classes\space\SpaceEntity.h">
+      <Filter>src\space</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\space\SpaceCraft.h">
+      <Filter>src\space</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\space\MainLayer.h">
+      <Filter>src\space</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game.rc">

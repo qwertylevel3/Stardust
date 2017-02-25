@@ -1,6 +1,8 @@
 #include "SpaceCraft.h"
+#include "base/ccMacros.h"
 #include "base/CCDirector.h"
 #include "2d/CCCamera.h"
+#include "Box2D/Box2D.h"
 
 Space::SpaceCraft::SpaceCraft()
 {
@@ -9,12 +11,23 @@ Space::SpaceCraft::SpaceCraft()
 	rudderLeft = false;
 	rudderRight = false;
 	maxSpeed = 15;
-	power = 100000;
+	power = 10;
 	sensitivity = 1.0;
 }
 
 Space::SpaceCraft::~SpaceCraft()
 {
+}
+
+bool Space::SpaceCraft::init()
+{
+	if (!cocos2d::Sprite::init())
+	{
+		return false;
+	}
+
+	this->initWithFile("space/testShip.png");
+	return true;
 }
 
 void Space::SpaceCraft::engineSwitch(bool b)
@@ -34,43 +47,42 @@ void Space::SpaceCraft::rudderRightSwitch(bool b)
 
 void Space::SpaceCraft::accelerate()
 {
-	float angle = this->getRotation();
+	//	float angle = this->getRotation();
+
+	float angle = body->GetAngle();
 	cocos2d::Vec2 temp(0, 1);
 	temp.scale(power);
-	temp.rotateByAngle(this->getPosition(), -angle);
+	temp = temp.rotateByAngle(cocos2d::Vec2(0, 0), angle);
 
-	this->getPhysicsBody()->applyForce(temp);
-
-
+	b2Vec2 tempVec(temp.x, temp.y);
+	body->ApplyForce(tempVec, body->GetPosition(), true);
 }
 
 void Space::SpaceCraft::decelerate()
 {
-	float angle = this->getRotation();
+	float angle = body->GetAngle();
 	cocos2d::Vec2 temp(0, -1);
 	temp.scale(power);
-	temp.rotateByAngle(this->getPosition(), -angle);
+	temp = temp.rotateByAngle(this->getPosition(), angle);
 
-	this->getPhysicsBody()->applyForce(temp);
+	b2Vec2 tempVec(temp.x, temp.y);
+	body->ApplyForce(tempVec, body->GetPosition(), true);
+
+	//	this->getPhysicsBody()->applyForce(temp);
 }
 
 void Space::SpaceCraft::rotateLeft()
 {
-	this->setRotation(this->getRotation() - sensitivity);
-	cocos2d::Scene* scene= cocos2d::Director::getInstance()->getRunningScene();
-	cocos2d::Camera* camera = scene->getDefaultCamera();
-
-	camera->setRotation(this->getRotation() - sensitivity);
-
+	//	this->setRotation(this->getRotation() - sensitivity);
+	body->SetAngularVelocity(sensitivity);
+	//	body->SetFixedRotation(body->GetAngle() - sensitivity);
 }
 
 void Space::SpaceCraft::rotateRight()
 {
-	this->setRotation(this->getRotation() + sensitivity);
-	cocos2d::Scene* scene= cocos2d::Director::getInstance()->getRunningScene();
-	cocos2d::Camera* camera = scene->getDefaultCamera();
-
-	camera->setRotation(this->getRotation() + sensitivity);
+	//	this->setRotation(this->getRotation() + sensitivity);
+	//	body->SetFixedRotation(body->GetAngle() + sensitivity);
+	body->SetAngularVelocity(-sensitivity);
 }
 
 void Space::SpaceCraft::update(float delta)
@@ -79,16 +91,26 @@ void Space::SpaceCraft::update(float delta)
 	{
 		accelerate();
 	}
-	if (rudderLeft)
+	if (rudderLeft || rudderRight)
 	{
-		rotateLeft();
+		if (rudderLeft)
+		{
+			rotateLeft();
+		}
+		if (rudderRight)
+		{
+			rotateRight();
+		}
 	}
-	if (rudderRight)
+	else
 	{
-		rotateRight();
+		body->SetAngularVelocity(0);
 	}
-	cocos2d::Scene* scene= cocos2d::Director::getInstance()->getRunningScene();
+
+	cocos2d::Scene* scene = cocos2d::Director::getInstance()->getRunningScene();
 	cocos2d::Camera* camera = scene->getDefaultCamera();
 
 	camera->setPosition(this->getPosition());
+//	camera->setRotation(body->GetAngle());
+	camera->setRotation(-1 * CC_RADIANS_TO_DEGREES(body->GetAngle()));
 }

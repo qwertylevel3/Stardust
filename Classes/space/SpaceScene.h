@@ -12,8 +12,11 @@ namespace Space
 		bool init();
 		void toggleDebug();
 
+		void update(float delta);
+
 		CREATE_FUNC(SpaceScene);
 	protected:
 		bool debugDraw;
+		cocos2d::Layer* mainLayer;
 	};
 }

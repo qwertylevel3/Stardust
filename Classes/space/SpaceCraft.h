@@ -9,6 +9,8 @@ namespace Space
 	public:
 		SpaceCraft();
 		~SpaceCraft();
+		bool init();
+
 		CREATE_FUNC(SpaceCraft);
 
 		void engineSwitch(bool b);
