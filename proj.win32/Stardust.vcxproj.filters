@@ -36,6 +36,9 @@
     <ClCompile Include="..\Classes\space\MainLayer.cpp">
       <Filter>src\space</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\space\GLES-Render.cpp">
+      <Filter>src\space</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -60,6 +63,9 @@
       <Filter>src\space</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\space\MainLayer.h">
+      <Filter>src\space</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\space\GLES-Render.h">
       <Filter>src\space</Filter>
     </ClInclude>
   </ItemGroup>

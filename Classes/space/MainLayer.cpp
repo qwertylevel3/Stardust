@@ -4,6 +4,24 @@
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventKeyboard.h"
 #include "base/CCEventDispatcher.h"
+#include "GLES-Render.h"
+#include <functional>
+
+Space::DebugDrawCommand::DebugDrawCommand()
+{
+
+}
+
+void Space::DebugDrawCommand::init(float globalZOrder)
+{
+	CustomCommand::init(globalZOrder);
+	func = std::bind(draw,this);
+}
+
+void Space::DebugDrawCommand::draw(DebugDrawCommand* command)
+{
+	command->world->DrawDebugData();
+}
 
 Space::MainLayer::MainLayer()
 {
@@ -29,7 +47,7 @@ bool Space::MainLayer::init()
 	//////////////////////////////////////////////////////////////////////////
 	cocos2d::Sprite* bk = cocos2d::Sprite::create("space/bk.png");
 	//bk->setScale(1.5);
-	this->addChild(bk);
+	this->addChild(bk, -1);
 	cocos2d::Texture2D::TexParams tp = { GL_LINEAR, GL_LINEAR, GL_REPEAT,GL_REPEAT };// 主要用到的是这个，水平重复平铺，垂直重复平铺
 	bk->getTexture()->setTexParameters(&tp);
 	bk->setTextureRect(cocos2d::Rect(0, 0, 1000000, 1000000));
@@ -97,15 +115,15 @@ void Space::MainLayer::handleKeyReleased(cocos2d::EventKeyboard::KeyCode keyCode
 
 void Space::MainLayer::update(float delta)
 {
-//	cocos2d::Point playerPosition = player->getPosition();
-//	cocos2d::Size visibleSize = cocos2d::Director::getInstance()->getVisibleSize();
-//	cocos2d::Size winSize = cocos2d::Director::getInstance()->getWinSize();
+	//	cocos2d::Point playerPosition = player->getPosition();
+	//	cocos2d::Size visibleSize = cocos2d::Director::getInstance()->getVisibleSize();
+	//	cocos2d::Size winSize = cocos2d::Director::getInstance()->getWinSize();
 
-//	this->setPosition(
-//		-(playerPosition.x - winSize.width / 2),
-//		-(playerPosition.y - winSize.height / 2)
-//	);
-	//////////////////////////////////////////////////////////////////////////
+	//	this->setPosition(
+	//		-(playerPosition.x - winSize.width / 2),
+	//		-(playerPosition.y - winSize.height / 2)
+	//	);
+		//////////////////////////////////////////////////////////////////////////
 
 	float timeStep = 0.03f;
 	int32 velocityIterations = 8;
@@ -113,7 +131,7 @@ void Space::MainLayer::update(float delta)
 
 	world->Step(timeStep, velocityIterations, positionIterations);
 
-	for (b2Body* b = world->GetBodyList(); b; b = b->GetNext())                       
+	for (b2Body* b = world->GetBodyList(); b; b = b->GetNext())
 	{
 		if (b->GetUserData() != nullptr) {
 			cocos2d::Sprite* sprite = (cocos2d::Sprite*)b->GetUserData();
@@ -122,6 +140,8 @@ void Space::MainLayer::update(float delta)
 			sprite->setRotation(-1 * CC_RADIANS_TO_DEGREES(b->GetAngle()));
 		}
 	}
+
+	//	debugDraw();
 }
 
 void Space::MainLayer::initPhy()
@@ -137,6 +157,13 @@ void Space::MainLayer::initPhy()
 	world->SetAllowSleeping(true);
 	// 开启连续物理测试
 	world->SetContinuousPhysics(true);
+
+	auto debugDrawFlag = new GLESDebugDraw(PTM_RATIO);   //这里新建一个 debug渲染模块
+
+	world->SetDebugDraw(debugDrawFlag);
+	uint32 flags = 0;
+	flags += b2Draw::e_shapeBit;
+	debugDrawFlag->SetFlags(flags);
 }
 
 void Space::MainLayer::addEneity(SpaceEntity* entity)
@@ -150,7 +177,7 @@ void Space::MainLayer::addEneity(SpaceEntity* entity)
 	bodyDef.type = b2_dynamicBody;
 	bodyDef.position.Set(position.x / PTM_RATIO, position.y / PTM_RATIO);
 	b2Body *body = world->CreateBody(&bodyDef);
-	
+
 	body->SetUserData(entity);
 	entity->setBody(body);
 
@@ -169,3 +196,28 @@ void Space::MainLayer::addEneity(SpaceEntity* entity)
 	//使用夹具固定形状到物体上
 	body->CreateFixture(&fixtureDef);
 }
+
+void Space::MainLayer::debugDraw()
+{
+	glDisable(GL_TEXTURE_2D);
+	glDisableClientState(GL_COLOR_ARRAY);
+	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+
+	world->DrawDebugData();
+
+	glEnable(GL_TEXTURE_2D);
+	glEnableClientState(GL_COLOR_ARRAY);
+	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+}
+
+void Space::MainLayer::draw(cocos2d::Renderer *renderer, const cocos2d::Mat4& transform, uint32_t flags)
+{
+	enableVertexAttribs(cocos2d::GL::VERTEX_ATTRIB_FLAG_POSITION);
+
+	command.init(_globalZOrder);
+	command.setWorld(world);
+	renderer->addCommand(&command);
+
+	CHECK_GL_ERROR_DEBUG();
+}
+
