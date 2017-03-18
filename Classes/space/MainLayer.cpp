@@ -1,5 +1,5 @@
 ﻿#include "MainLayer.h"
-#include "SpaceCraft.h"
+#include "SpaceShip.h"
 #include "base/CCDirector.h"
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventKeyboard.h"
@@ -7,21 +7,28 @@
 #include "GLES-Render.h"
 #include <functional>
 
+//////////////////////////////////////////////////////////////////////////
+//DebugDrawCommand
+//////////////////////////////////////////////////////////////////////////
+
 Space::DebugDrawCommand::DebugDrawCommand()
 {
-
 }
 
 void Space::DebugDrawCommand::init(float globalZOrder)
 {
 	CustomCommand::init(globalZOrder);
-	func = std::bind(draw,this);
+	func = std::bind(draw, this);
 }
 
 void Space::DebugDrawCommand::draw(DebugDrawCommand* command)
 {
 	command->world->DrawDebugData();
 }
+
+//////////////////////////////////////////////////////////////////////////
+//MainLayer
+//////////////////////////////////////////////////////////////////////////
 
 Space::MainLayer::MainLayer()
 {
@@ -45,16 +52,8 @@ bool Space::MainLayer::init()
 	cocos2d::Vec2 origin = cocos2d::Director::getInstance()->getVisibleOrigin();
 
 	//////////////////////////////////////////////////////////////////////////
-	cocos2d::Sprite* bk = cocos2d::Sprite::create("space/bk.png");
-	//bk->setScale(1.5);
-	this->addChild(bk, -1);
-	cocos2d::Texture2D::TexParams tp = { GL_LINEAR, GL_LINEAR, GL_REPEAT,GL_REPEAT };// 主要用到的是这个，水平重复平铺，垂直重复平铺
-	bk->getTexture()->setTexParameters(&tp);
-	bk->setTextureRect(cocos2d::Rect(0, 0, 1000000, 1000000));
-	bk->setPosition(origin.x + visibleSize.width / 2,
-		origin.y + visibleSize.height / 2);
 
-	player = SpaceCraft::create();
+	player = SpaceShip::create();
 	player->setPosition(origin.x + visibleSize.width / 2,
 		origin.y + visibleSize.height / 2);
 
@@ -75,8 +74,6 @@ bool Space::MainLayer::init()
 
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
 
-	//	this->scheduleUpdate();
-
 	return true;
 }
 
@@ -85,15 +82,20 @@ void Space::MainLayer::handleKeyPressed(cocos2d::EventKeyboard::KeyCode keyCode)
 	static int count = 0;
 	if (keyCode == cocos2d::EventKeyboard::KeyCode::KEY_UP_ARROW)
 	{
-		player->engineSwitch(true);
+//		player->engineSwitch(true);
+		player->moveUpOn();
+	}
+	else if (keyCode == cocos2d::EventKeyboard::KeyCode::KEY_DOWN_ARROW)
+	{
+		player->moveDownOn();
 	}
 	else if (keyCode == cocos2d::EventKeyboard::KeyCode::KEY_LEFT_ARROW)
 	{
-		player->rudderLeftSwitch(true);
+		player->moveLeftOn();
 	}
 	else if (keyCode == cocos2d::EventKeyboard::KeyCode::KEY_RIGHT_ARROW)
 	{
-		player->rudderRightSwitch(true);
+		player->moveRightOn();
 	}
 }
 
@@ -101,30 +103,25 @@ void Space::MainLayer::handleKeyReleased(cocos2d::EventKeyboard::KeyCode keyCode
 {
 	if (keyCode == cocos2d::EventKeyboard::KeyCode::KEY_UP_ARROW)
 	{
-		player->engineSwitch(false);
+//		player->engineSwitch(true);
+		player->moveUpOff();
+	}
+	else if (keyCode == cocos2d::EventKeyboard::KeyCode::KEY_DOWN_ARROW)
+	{
+		player->moveDownOff();
 	}
 	else if (keyCode == cocos2d::EventKeyboard::KeyCode::KEY_LEFT_ARROW)
 	{
-		player->rudderLeftSwitch(false);
+		player->moveLeftOff();
 	}
 	else if (keyCode == cocos2d::EventKeyboard::KeyCode::KEY_RIGHT_ARROW)
 	{
-		player->rudderRightSwitch(false);
+		player->moveRightOff();
 	}
 }
 
 void Space::MainLayer::update(float delta)
 {
-	//	cocos2d::Point playerPosition = player->getPosition();
-	//	cocos2d::Size visibleSize = cocos2d::Director::getInstance()->getVisibleSize();
-	//	cocos2d::Size winSize = cocos2d::Director::getInstance()->getWinSize();
-
-	//	this->setPosition(
-	//		-(playerPosition.x - winSize.width / 2),
-	//		-(playerPosition.y - winSize.height / 2)
-	//	);
-		//////////////////////////////////////////////////////////////////////////
-
 	float timeStep = 0.03f;
 	int32 velocityIterations = 8;
 	int32 positionIterations = 1;
@@ -140,8 +137,6 @@ void Space::MainLayer::update(float delta)
 			sprite->setRotation(-1 * CC_RADIANS_TO_DEGREES(b->GetAngle()));
 		}
 	}
-
-	//	debugDraw();
 }
 
 void Space::MainLayer::initPhy()
@@ -220,4 +215,3 @@ void Space::MainLayer::draw(cocos2d::Renderer *renderer, const cocos2d::Mat4& tr
 
 	CHECK_GL_ERROR_DEBUG();
 }
-

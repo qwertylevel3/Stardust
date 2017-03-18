@@ -4,6 +4,7 @@
 
 
 Space::SpaceEntity::SpaceEntity()
+	:body(nullptr)
 {
 
 }
@@ -15,7 +16,6 @@ Space::SpaceEntity::~SpaceEntity()
 
 bool Space::SpaceEntity::init()
 {
-
 	return true;
 }
 

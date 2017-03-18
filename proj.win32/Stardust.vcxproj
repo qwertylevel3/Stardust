@@ -148,7 +148,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\space\BKLayer.cpp" />
     <ClCompile Include="..\Classes\space\GLES-Render.cpp" />
     <ClCompile Include="..\Classes\space\MainLayer.cpp" />
-    <ClCompile Include="..\Classes\space\SpaceCraft.cpp" />
+    <ClCompile Include="..\Classes\space\SpaceShip.cpp" />
     <ClCompile Include="..\Classes\space\SpaceEntity.cpp" />
     <ClCompile Include="..\Classes\space\SpaceScene.cpp" />
     <ClCompile Include="main.cpp" />
@@ -158,7 +158,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\space\BKLayer.h" />
     <ClInclude Include="..\Classes\space\GLES-Render.h" />
     <ClInclude Include="..\Classes\space\MainLayer.h" />
-    <ClInclude Include="..\Classes\space\SpaceCraft.h" />
+    <ClInclude Include="..\Classes\space\SpaceShip.h" />
     <ClInclude Include="..\Classes\space\SpaceEntity.h" />
     <ClInclude Include="..\Classes\space\SpaceScene.h" />
     <ClInclude Include="..\Classes\space\ZOrder.h" />

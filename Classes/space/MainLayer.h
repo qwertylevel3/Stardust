@@ -8,8 +8,12 @@
 
 namespace Space
 {
-	class SpaceCraft;
+	class SpaceShip;
 	class SpaceEntity;
+
+	//////////////////////////////////////////////////////////////////////////
+	//DebugDrawCommand
+	//////////////////////////////////////////////////////////////////////////
 
 	class DebugDrawCommand :public cocos2d::CustomCommand
 	{
@@ -21,6 +25,11 @@ namespace Space
 	private:
 		b2World* world;
 	};
+
+
+	//////////////////////////////////////////////////////////////////////////
+	//MainLayer
+	//////////////////////////////////////////////////////////////////////////
 
 	class MainLayer :public cocos2d::Layer
 	{
@@ -39,7 +48,7 @@ namespace Space
 	protected:
 		void initPhy();
 		void debugDraw();
-		SpaceCraft* player;
+		SpaceShip* player;
 		b2World* world;
 		DebugDrawCommand command;
 	};

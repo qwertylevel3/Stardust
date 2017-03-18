@@ -18,5 +18,6 @@ namespace Space
 	protected:
 		bool debugDraw;
 		cocos2d::Layer* mainLayer;
+		cocos2d::Layer* bkLayer;
 	};
 }

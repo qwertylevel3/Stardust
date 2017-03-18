@@ -1,17 +1,27 @@
 #pragma once
 
 #include "SpaceEntity.h"
+#include <vector>
 
 namespace Space
 {
-	class SpaceCraft :public SpaceEntity
+	class SpaceShip :public SpaceEntity
 	{
 	public:
-		SpaceCraft();
-		~SpaceCraft();
+		SpaceShip();
+		~SpaceShip();
 		bool init();
 
-		CREATE_FUNC(SpaceCraft);
+		CREATE_FUNC(SpaceShip);
+
+		void moveUpOn();
+		void moveUpOff();
+		void moveDownOn();
+		void moveDownOff();
+		void moveLeftOn();
+		void moveLeftOff();
+		void moveRightOn();
+		void moveRightOff();
 
 		void engineSwitch(bool b);
 		void rudderLeftSwitch(bool b);
@@ -31,5 +41,10 @@ namespace Space
 		bool accelerator;
 		bool rudderLeft;
 		bool rudderRight;
+		
+		bool moveUpFlag{ false };
+		bool moveDownFlag{ false };
+		bool moveLeftFlag{ false };
+		bool moveRightFlag{ false };
 	};
 }

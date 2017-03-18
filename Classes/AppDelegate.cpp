@@ -74,8 +74,6 @@ bool AppDelegate::applicationDidFinishLaunching() {
     register_all_packages();
 
 
-	director->getConsole()->listenOnTCP(5678);
-
     auto scene = Space::SpaceScene::create();
     // run
     director->runWithScene(scene);

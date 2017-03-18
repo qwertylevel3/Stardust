@@ -8,6 +8,7 @@ namespace Space
 	{
 	public:
 		virtual bool init();
+		void update(float delta);
 
 		// implement the "static create()" method manually
 		CREATE_FUNC(BKLayer);

@@ -30,3 +30,8 @@ bool Space::BKLayer::init()
     return true;
 }
 
+void Space::BKLayer::update(float delta)
+{
+
+}
+
