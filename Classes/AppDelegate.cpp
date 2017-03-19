@@ -1,5 +1,6 @@
 #include "AppDelegate.h"
 #include "space/SpaceScene.h"
+#include "KeycodeDispatcher.h"
 
 USING_NS_CC;
 
@@ -75,6 +76,8 @@ bool AppDelegate::applicationDidFinishLaunching() {
 
 
     auto scene = Space::SpaceScene::create();
+	KeycodeDispatcher* controller = KeycodeDispatcher::create();
+	scene->addChild(controller);
     // run
     director->runWithScene(scene);
 

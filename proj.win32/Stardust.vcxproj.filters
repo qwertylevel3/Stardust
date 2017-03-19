@@ -13,6 +13,9 @@
     <Filter Include="src\space">
       <UniqueIdentifier>{1363b031-6119-4e77-b54f-45d95811c78c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\space\component">
+      <UniqueIdentifier>{47b92579-fbff-4cb0-92f9-cbaa69da477e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -36,11 +39,18 @@
     <ClCompile Include="..\Classes\space\GLES-Render.cpp">
       <Filter>src\space</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\space\SpaceShip.cpp">
+    <ClCompile Include="..\Classes\space\Core.cpp">
       <Filter>src\space</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\space\SpaceComponent.cpp" />
-    <ClCompile Include="..\Classes\space\Core.cpp" />
+    <ClCompile Include="..\Classes\KeycodeDispatcher.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\KeycodeListener.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\space\component\SpaceComponent.cpp">
+      <Filter>src\space\component</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -67,11 +77,21 @@
     <ClInclude Include="..\Classes\space\GLES-Render.h">
       <Filter>src\space</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\space\SpaceShip.h">
+    <ClInclude Include="..\Classes\space\Core.h">
       <Filter>src\space</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\space\SpaceComponent.h" />
-    <ClInclude Include="..\Classes\space\Core.h" />
+    <ClInclude Include="..\Classes\Singleton.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\KeycodeDispatcher.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\KeycodeListener.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\space\component\SpaceComponent.h">
+      <Filter>src\space\component</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game.rc">

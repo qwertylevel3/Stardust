@@ -1,11 +1,12 @@
 ﻿#include "MainLayer.h"
-#include "SpaceShip.h"
+#include <functional>
 #include "base/CCDirector.h"
 #include "base/CCEventListenerKeyboard.h"
 #include "base/CCEventKeyboard.h"
 #include "base/CCEventDispatcher.h"
+
 #include "GLES-Render.h"
-#include <functional>
+#include "SpaceEntity.h"
 
 //////////////////////////////////////////////////////////////////////////
 //DebugDrawCommand

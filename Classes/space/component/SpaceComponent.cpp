@@ -1,6 +1,6 @@
 #include "SpaceComponent.h"
 #include "Box2D/Common/b2Math.h"
-#include "SpaceEntity.h"
+#include "space/SpaceEntity.h"
 
 
 
