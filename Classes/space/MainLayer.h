@@ -47,8 +47,7 @@ namespace Space
 		void draw(cocos2d::Renderer *renderer, const cocos2d::Mat4& transform, uint32_t flags);
 	protected:
 		void initPhy();
-		void debugDraw();
-		SpaceShip* player;
+		SpaceEntity* player;
 		b2World* world;
 		DebugDrawCommand command;
 	};

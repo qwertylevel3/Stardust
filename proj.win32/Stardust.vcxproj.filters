@@ -39,6 +39,8 @@
     <ClCompile Include="..\Classes\space\SpaceShip.cpp">
       <Filter>src\space</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\space\SpaceComponent.cpp" />
+    <ClCompile Include="..\Classes\space\Core.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -68,6 +70,8 @@
     <ClInclude Include="..\Classes\space\SpaceShip.h">
       <Filter>src\space</Filter>
     </ClInclude>
+    <ClInclude Include="..\Classes\space\SpaceComponent.h" />
+    <ClInclude Include="..\Classes\space\Core.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game.rc">

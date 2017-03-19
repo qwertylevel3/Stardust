@@ -7,12 +7,6 @@
 Space::SpaceShip::SpaceShip()
 {
 	this->scheduleUpdate();
-	accelerator = false;
-	rudderLeft = false;
-	rudderRight = false;
-	maxSpeed = 15;
-	power = 10;
-	sensitivity = 1.0;
 }
 
 Space::SpaceShip::~SpaceShip()
@@ -68,61 +62,6 @@ void Space::SpaceShip::moveRightOn()
 void Space::SpaceShip::moveRightOff()
 {
 	moveRightFlag = false;
-}
-
-void Space::SpaceShip::engineSwitch(bool b)
-{
-	accelerator = b;
-}
-
-void Space::SpaceShip::rudderLeftSwitch(bool b)
-{
-	rudderLeft = b;
-}
-
-void Space::SpaceShip::rudderRightSwitch(bool b)
-{
-	rudderRight = b;
-}
-
-void Space::SpaceShip::accelerate()
-{
-	//	float angle = this->getRotation();
-
-	float angle = body->GetAngle();
-	cocos2d::Vec2 temp(0, 1);
-	temp.scale(power);
-	temp = temp.rotateByAngle(cocos2d::Vec2(0, 0), angle);
-
-	b2Vec2 tempVec(temp.x, temp.y);
-	body->ApplyForce(tempVec, body->GetPosition(), true);
-}
-
-void Space::SpaceShip::decelerate()
-{
-	float angle = body->GetAngle();
-	cocos2d::Vec2 temp(0, -1);
-	temp.scale(power);
-	temp = temp.rotateByAngle(this->getPosition(), angle);
-
-	b2Vec2 tempVec(temp.x, temp.y);
-	body->ApplyForce(tempVec, body->GetPosition(), true);
-
-	//	this->getPhysicsBody()->applyForce(temp);
-}
-
-void Space::SpaceShip::rotateLeft()
-{
-	//	this->setRotation(this->getRotation() - sensitivity);
-	body->SetAngularVelocity(sensitivity);
-	//	body->SetFixedRotation(body->GetAngle() - sensitivity);
-}
-
-void Space::SpaceShip::rotateRight()
-{
-	//	this->setRotation(this->getRotation() + sensitivity);
-	//	body->SetFixedRotation(body->GetAngle() + sensitivity);
-	body->SetAngularVelocity(-sensitivity);
 }
 
 void Space::SpaceShip::update(float delta)

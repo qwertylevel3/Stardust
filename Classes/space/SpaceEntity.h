@@ -3,6 +3,9 @@
 #include "2d/CCSprite.h"
 #include "Box2D/Box2D.h"
 
+
+#include "Core.h"
+
 namespace Space
 {
 	class SpaceEntity:public cocos2d::Sprite
@@ -10,10 +13,16 @@ namespace Space
 	public:
 		SpaceEntity();
 		~SpaceEntity();
+		CREATE_FUNC(SpaceEntity);
+
 		bool init();
 		void setBody(b2Body* b);
-//		CREATE_FUNC(SpaceEntity);
+	    void SetLinearVelocity(b2Vec2 v);
+		void update(float delta);
+		void handleKeyPressed(cocos2d::EventKeyboard::KeyCode keyCode);
+		void handleKeyReleased(cocos2d::EventKeyboard::KeyCode keyCode);
 	protected:
+		Core core;
 		b2Body* body;
 	};
 }

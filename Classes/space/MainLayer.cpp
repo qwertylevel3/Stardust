@@ -32,6 +32,7 @@ void Space::DebugDrawCommand::draw(DebugDrawCommand* command)
 
 Space::MainLayer::MainLayer()
 {
+	world = nullptr;
 }
 
 Space::MainLayer::~MainLayer()
@@ -53,7 +54,7 @@ bool Space::MainLayer::init()
 
 	//////////////////////////////////////////////////////////////////////////
 
-	player = SpaceShip::create();
+	player = SpaceEntity::create();
 	player->setPosition(origin.x + visibleSize.width / 2,
 		origin.y + visibleSize.height / 2);
 
@@ -79,49 +80,18 @@ bool Space::MainLayer::init()
 
 void Space::MainLayer::handleKeyPressed(cocos2d::EventKeyboard::KeyCode keyCode)
 {
-	static int count = 0;
-	if (keyCode == cocos2d::EventKeyboard::KeyCode::KEY_UP_ARROW)
-	{
-//		player->engineSwitch(true);
-		player->moveUpOn();
-	}
-	else if (keyCode == cocos2d::EventKeyboard::KeyCode::KEY_DOWN_ARROW)
-	{
-		player->moveDownOn();
-	}
-	else if (keyCode == cocos2d::EventKeyboard::KeyCode::KEY_LEFT_ARROW)
-	{
-		player->moveLeftOn();
-	}
-	else if (keyCode == cocos2d::EventKeyboard::KeyCode::KEY_RIGHT_ARROW)
-	{
-		player->moveRightOn();
-	}
+	player->handleKeyPressed(keyCode);
 }
 
 void Space::MainLayer::handleKeyReleased(cocos2d::EventKeyboard::KeyCode keyCode)
 {
-	if (keyCode == cocos2d::EventKeyboard::KeyCode::KEY_UP_ARROW)
-	{
-//		player->engineSwitch(true);
-		player->moveUpOff();
-	}
-	else if (keyCode == cocos2d::EventKeyboard::KeyCode::KEY_DOWN_ARROW)
-	{
-		player->moveDownOff();
-	}
-	else if (keyCode == cocos2d::EventKeyboard::KeyCode::KEY_LEFT_ARROW)
-	{
-		player->moveLeftOff();
-	}
-	else if (keyCode == cocos2d::EventKeyboard::KeyCode::KEY_RIGHT_ARROW)
-	{
-		player->moveRightOff();
-	}
+	player->handleKeyReleased(keyCode);
 }
 
 void Space::MainLayer::update(float delta)
 {
+	player->update(delta);
+
 	float timeStep = 0.03f;
 	int32 velocityIterations = 8;
 	int32 positionIterations = 1;
@@ -190,19 +160,6 @@ void Space::MainLayer::addEneity(SpaceEntity* entity)
 	fixtureDef.friction = 0.3f;
 	//使用夹具固定形状到物体上
 	body->CreateFixture(&fixtureDef);
-}
-
-void Space::MainLayer::debugDraw()
-{
-	glDisable(GL_TEXTURE_2D);
-	glDisableClientState(GL_COLOR_ARRAY);
-	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
-
-	world->DrawDebugData();
-
-	glEnable(GL_TEXTURE_2D);
-	glEnableClientState(GL_COLOR_ARRAY);
-	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 }
 
 void Space::MainLayer::draw(cocos2d::Renderer *renderer, const cocos2d::Mat4& transform, uint32_t flags)
