@@ -7,6 +7,7 @@
 
 #include "GLES-Render.h"
 #include "SpaceEntity.h"
+#include "EntityFactory.h"
 
 //////////////////////////////////////////////////////////////////////////
 //DebugDrawCommand
@@ -47,41 +48,19 @@ bool Space::MainLayer::init()
 	{
 		return false;
 	}
-
 	initPhy();
 
-	auto visibleSize = cocos2d::Director::getInstance()->getVisibleSize();
-	cocos2d::Vec2 origin = cocos2d::Director::getInstance()->getVisibleOrigin();
-
-	//////////////////////////////////////////////////////////////////////////
-
-	player = SpaceEntity::create();
-	player->setPosition(origin.x + visibleSize.width / 2,
-		origin.y + visibleSize.height / 2);
-
-	this->addEneity(player);
-
-	//////////////////////////////////////////////////////////////////////////
-//	auto listener = cocos2d::EventListenerKeyboard::create();
-//	listener->onKeyPressed = [=](cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event* event)
-//	{
-//		this->handleKeyPressed(keyCode);
-//		//Player::getInstance()->handleKeyPressed(keyCode);
-//	};
-//	listener->onKeyReleased = [=](cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event* event)
-//	{
-//		this->handleKeyReleased(keyCode);
-//		//Player::getInstance()->handleKeyPressed(keyCode);
-//	};
-
-//	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
+	EntityFactory::getInstance()->createPlayer(this);
 
 	return true;
 }
 
 void Space::MainLayer::update(float delta)
 {
-	player->update(delta);
+	for each (SpaceEntity* entity in allEntity)
+	{
+		entity->update(delta);
+	}
 
 	float timeStep = 0.03f;
 	int32 velocityIterations = 8;
@@ -125,6 +104,7 @@ void Space::MainLayer::initPhy()
 void Space::MainLayer::addEneity(SpaceEntity* entity)
 {
 	this->addChild(entity);
+	allEntity.pushBack(entity);
 
 	cocos2d::Point position = entity->getPosition();
 

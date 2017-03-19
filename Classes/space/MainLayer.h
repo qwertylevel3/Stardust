@@ -2,6 +2,7 @@
 
 #include "2d/CCLayer.h"
 #include "Box2D/Box2D.h"
+#include "base/CCVector.h"
 
 #define	PTM_RATIO 32
 
@@ -45,7 +46,9 @@ namespace Space
 		void draw(cocos2d::Renderer *renderer, const cocos2d::Mat4& transform, uint32_t flags);
 	protected:
 		void initPhy();
-		SpaceEntity* player;
+
+		cocos2d::Vector<SpaceEntity*> allEntity;
+
 		b2World* world;
 		DebugDrawCommand command;
 	};
