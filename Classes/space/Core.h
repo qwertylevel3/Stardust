@@ -18,8 +18,6 @@ namespace Space
 		Core(SpaceEntity* e);
 		~Core();
 		void update(float delta);
-		void handleKeyPressed(cocos2d::EventKeyboard::KeyCode keyCode);
-		void handleKeyReleased(cocos2d::EventKeyboard::KeyCode keyCode);
 	protected:
 		cocos2d::Vector<cocos2d::RefPtr<SpaceComponent> > componentBox;
 		SpaceEntity* entity;

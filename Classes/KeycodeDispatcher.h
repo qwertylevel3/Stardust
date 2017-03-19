@@ -4,14 +4,17 @@
 #include "base/CCVector.h"
 #include "base/CCRefPtr.h"
 
+#include "Singleton.h"
+
 class KeycodeListener;
 
-class KeycodeDispatcher :public cocos2d::Node
+class KeycodeDispatcher :public cocos2d::Node,public Singleton<KeycodeDispatcher>
 {
 public:
 	KeycodeDispatcher();
 	~KeycodeDispatcher();
 	bool init();
+	void addLinster(KeycodeListener* listener);
 	void handleKeyPressed(cocos2d::EventKeyboard::KeyCode keyCode);
 	void handleKeyReleased(cocos2d::EventKeyboard::KeyCode keyCode);
 

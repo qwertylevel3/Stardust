@@ -1,11 +1,12 @@
 #include "KeycodeListener.h"
+#include "KeycodeDispatcher.h"
 
 
 
 
 KeycodeListener::KeycodeListener()
 {
-
+	KeycodeDispatcher::getInstance()->addLinster(this);
 }
 
 KeycodeListener::~KeycodeListener()

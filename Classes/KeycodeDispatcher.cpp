@@ -51,3 +51,9 @@ void KeycodeDispatcher::handleKeyReleased(cocos2d::EventKeyboard::KeyCode keyCod
 	}
 }
 
+void KeycodeDispatcher::addLinster(KeycodeListener* listener)
+{
+	cocos2d::RefPtr<KeycodeListener> ptr(listener);
+	allListener.pushBack(ptr);
+}
+

@@ -19,16 +19,6 @@ void Space::SpaceComponent::update(float delta)
 
 }
 
-void Space::SpaceComponent::handleKeyPressed(cocos2d::EventKeyboard::KeyCode keyCode)
-{
-
-}
-
-void Space::SpaceComponent::handleKeyReleased(cocos2d::EventKeyboard::KeyCode keyCode)
-{
-
-}
-
 Space::Engine::Engine(SpaceEntity* e)
 	:SpaceComponent(e)
 {

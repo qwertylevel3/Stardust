@@ -39,8 +39,6 @@ namespace Space
 		bool init();
 		void update(float delta);
 
-		void handleKeyPressed(cocos2d::EventKeyboard::KeyCode keyCode);
-		void handleKeyReleased(cocos2d::EventKeyboard::KeyCode keyCode);
 
 		CREATE_FUNC(MainLayer);
 		void addEneity(SpaceEntity* entity);

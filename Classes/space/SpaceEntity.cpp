@@ -35,13 +35,3 @@ void Space::SpaceEntity::update(float delta)
 {
 	core.update(delta);
 }
-
-void Space::SpaceEntity::handleKeyPressed(cocos2d::EventKeyboard::KeyCode keyCode)
-{
-	core.handleKeyPressed(keyCode);
-}
-
-void Space::SpaceEntity::handleKeyReleased(cocos2d::EventKeyboard::KeyCode keyCode)
-{
-	core.handleKeyReleased(keyCode);
-}

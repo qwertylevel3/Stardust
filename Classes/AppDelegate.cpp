@@ -76,7 +76,8 @@ bool AppDelegate::applicationDidFinishLaunching() {
 
 
     auto scene = Space::SpaceScene::create();
-	KeycodeDispatcher* controller = KeycodeDispatcher::create();
+	KeycodeDispatcher::getInstance()->init();
+	KeycodeDispatcher* controller = KeycodeDispatcher::getInstance();
 	scene->addChild(controller);
     // run
     director->runWithScene(scene);

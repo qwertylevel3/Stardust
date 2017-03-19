@@ -19,8 +19,6 @@ namespace Space
 		void setBody(b2Body* b);
 	    void SetLinearVelocity(b2Vec2 v);
 		void update(float delta);
-		void handleKeyPressed(cocos2d::EventKeyboard::KeyCode keyCode);
-		void handleKeyReleased(cocos2d::EventKeyboard::KeyCode keyCode);
 	protected:
 		Core core;
 		b2Body* body;

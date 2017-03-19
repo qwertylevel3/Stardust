@@ -62,31 +62,21 @@ bool Space::MainLayer::init()
 	this->addEneity(player);
 
 	//////////////////////////////////////////////////////////////////////////
-	auto listener = cocos2d::EventListenerKeyboard::create();
-	listener->onKeyPressed = [=](cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event* event)
-	{
-		this->handleKeyPressed(keyCode);
-		//Player::getInstance()->handleKeyPressed(keyCode);
-	};
-	listener->onKeyReleased = [=](cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event* event)
-	{
-		this->handleKeyReleased(keyCode);
-		//Player::getInstance()->handleKeyPressed(keyCode);
-	};
+//	auto listener = cocos2d::EventListenerKeyboard::create();
+//	listener->onKeyPressed = [=](cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event* event)
+//	{
+//		this->handleKeyPressed(keyCode);
+//		//Player::getInstance()->handleKeyPressed(keyCode);
+//	};
+//	listener->onKeyReleased = [=](cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event* event)
+//	{
+//		this->handleKeyReleased(keyCode);
+//		//Player::getInstance()->handleKeyPressed(keyCode);
+//	};
 
-	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
+//	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
 
 	return true;
-}
-
-void Space::MainLayer::handleKeyPressed(cocos2d::EventKeyboard::KeyCode keyCode)
-{
-	player->handleKeyPressed(keyCode);
-}
-
-void Space::MainLayer::handleKeyReleased(cocos2d::EventKeyboard::KeyCode keyCode)
-{
-	player->handleKeyReleased(keyCode);
 }
 
 void Space::MainLayer::update(float delta)

@@ -1,5 +1,5 @@
 #include "Core.h"
-#include "SpaceComponent.h"
+#include "space/component/SpaceComponent.h"
 
 
 
@@ -23,18 +23,3 @@ void Space::Core::update(float delta)
 	}
 }
 
-void Space::Core::handleKeyPressed(cocos2d::EventKeyboard::KeyCode keyCode)
-{
-	for each (cocos2d::RefPtr<SpaceComponent> ptr in componentBox)
-	{
-		ptr->handleKeyPressed(keyCode);
-	}
-}
-
-void Space::Core::handleKeyReleased(cocos2d::EventKeyboard::KeyCode keyCode)
-{
-	for each (cocos2d::RefPtr<SpaceComponent> ptr in componentBox)
-	{
-		ptr->handleKeyReleased(keyCode);
-	}
-}

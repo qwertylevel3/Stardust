@@ -2,6 +2,7 @@
 
 #include "base/CCEventKeyboard.h"
 #include "base/CCRef.h"
+#include "KeycodeListener.h"
 
 namespace Space
 {
@@ -13,13 +14,11 @@ namespace Space
 		SpaceComponent(SpaceEntity* e);
 		virtual ~SpaceComponent();
 		virtual void update(float delta);
-		virtual void handleKeyPressed(cocos2d::EventKeyboard::KeyCode keyCode);
-		virtual void handleKeyReleased(cocos2d::EventKeyboard::KeyCode keyCode);
 	protected:
 		SpaceEntity* entity;
 	};
 
-	class Engine :public SpaceComponent
+	class Engine :public SpaceComponent,public KeycodeListener
 	{
 	public:
 		Engine(SpaceEntity* e);
