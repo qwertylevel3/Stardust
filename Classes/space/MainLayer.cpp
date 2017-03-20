@@ -51,6 +51,7 @@ bool Space::MainLayer::init()
 	initPhy();
 
 	EntityFactory::getInstance()->createPlayer(this);
+	EntityFactory::getInstance()->createTestEnemy(this);
 
 	return true;
 }
@@ -117,9 +118,8 @@ void Space::MainLayer::addEneity(SpaceEntity* entity)
 	body->SetUserData(entity);
 	entity->setBody(body);
 
-	// 定义2米见方的盒子形状
 	b2PolygonShape dynamicBox;
-	dynamicBox.SetAsBox(1, 1);
+	dynamicBox.SetAsBox(entity->getContentSize().width, entity->getContentSize().height);
 
 	// 夹具定义
 	b2FixtureDef fixtureDef;

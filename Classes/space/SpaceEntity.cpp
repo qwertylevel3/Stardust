@@ -16,7 +16,7 @@ Space::SpaceEntity::~SpaceEntity()
 
 bool Space::SpaceEntity::init()
 {
-	this->initWithFile("space/testShip.png");
+
 	return true;
 }
 

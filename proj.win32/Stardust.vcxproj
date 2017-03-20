@@ -148,6 +148,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\KeycodeDispatcher.cpp" />
     <ClCompile Include="..\Classes\KeycodeListener.cpp" />
     <ClCompile Include="..\Classes\space\BKLayer.cpp" />
+    <ClCompile Include="..\Classes\space\component\Engine.cpp" />
     <ClCompile Include="..\Classes\space\component\SpaceComponent.cpp" />
     <ClCompile Include="..\Classes\space\Core.cpp" />
     <ClCompile Include="..\Classes\space\EntityFactory.cpp" />
@@ -163,6 +164,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\KeycodeListener.h" />
     <ClInclude Include="..\Classes\Singleton.h" />
     <ClInclude Include="..\Classes\space\BKLayer.h" />
+    <ClInclude Include="..\Classes\space\component\Engine.h" />
     <ClInclude Include="..\Classes\space\component\SpaceComponent.h" />
     <ClInclude Include="..\Classes\space\Core.h" />
     <ClInclude Include="..\Classes\space\EntityFactory.h" />

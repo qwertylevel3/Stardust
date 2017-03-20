@@ -4,7 +4,7 @@
 #include "Box2D/Box2D.h"
 #include "base/CCVector.h"
 
-#define	PTM_RATIO 32
+#define	PTM_RATIO 1
 
 
 namespace Space
