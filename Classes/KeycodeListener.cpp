@@ -11,7 +11,7 @@ KeycodeListener::KeycodeListener()
 
 KeycodeListener::~KeycodeListener()
 {
-
+	KeycodeDispatcher::getInstance()->removeLinster(this);
 }
 
 

@@ -151,9 +151,11 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\space\component\Engine.cpp" />
     <ClCompile Include="..\Classes\space\component\SpaceComponent.cpp" />
     <ClCompile Include="..\Classes\space\Core.cpp" />
+    <ClCompile Include="..\Classes\space\EntityController.cpp" />
     <ClCompile Include="..\Classes\space\EntityFactory.cpp" />
     <ClCompile Include="..\Classes\space\GLES-Render.cpp" />
     <ClCompile Include="..\Classes\space\MainLayer.cpp" />
+    <ClCompile Include="..\Classes\space\PlayerController.cpp" />
     <ClCompile Include="..\Classes\space\SpaceEntity.cpp" />
     <ClCompile Include="..\Classes\space\SpaceScene.cpp" />
     <ClCompile Include="main.cpp" />
@@ -167,9 +169,11 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\space\component\Engine.h" />
     <ClInclude Include="..\Classes\space\component\SpaceComponent.h" />
     <ClInclude Include="..\Classes\space\Core.h" />
+    <ClInclude Include="..\Classes\space\EntityController.h" />
     <ClInclude Include="..\Classes\space\EntityFactory.h" />
     <ClInclude Include="..\Classes\space\GLES-Render.h" />
     <ClInclude Include="..\Classes\space\MainLayer.h" />
+    <ClInclude Include="..\Classes\space\PlayerController.h" />
     <ClInclude Include="..\Classes\space\SpaceEntity.h" />
     <ClInclude Include="..\Classes\space\SpaceScene.h" />
     <ClInclude Include="..\Classes\space\ZOrder.h" />

@@ -1,7 +1,10 @@
 #include "EntityFactory.h"
-#include "SpaceEntity.h"
+
 #include "base/CCDirector.h"
+
+#include "SpaceEntity.h"
 #include "MainLayer.h"
+#include "PlayerController.h"
 
 
 
@@ -23,6 +26,7 @@ void Space::EntityFactory::createPlayer(Space::MainLayer* layer)
 	entity->initWithFile("space/testShip.png");
 	entity->setPosition(origin.x + visibleSize.width / 2,
 		origin.y + visibleSize.height / 5);
+	entity->setController(cocos2d::RefPtr<EntityController>(new PlayerController()));
 
 	layer->addEneity(entity);
 }
@@ -36,6 +40,8 @@ void Space::EntityFactory::createTestEnemy(MainLayer* layer)
 	entity->initWithFile("space/testShip2.png");
 	entity->setPosition(origin.x + visibleSize.width / 2,
 		origin.y + visibleSize.height*4 / 5);
+
+	entity->setController(cocos2d::RefPtr<EntityController>(new EntityController()));
 
 	layer->addEneity(entity);
 }

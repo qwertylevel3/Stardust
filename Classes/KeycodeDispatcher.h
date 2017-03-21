@@ -15,6 +15,7 @@ public:
 	~KeycodeDispatcher();
 	bool init();
 	void addLinster(KeycodeListener* listener);
+	void removeLinster(KeycodeListener* listener);
 	void handleKeyPressed(cocos2d::EventKeyboard::KeyCode keyCode);
 	void handleKeyReleased(cocos2d::EventKeyboard::KeyCode keyCode);
 

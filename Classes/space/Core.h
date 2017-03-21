@@ -20,6 +20,6 @@ namespace Space
 		void update(float delta);
 	protected:
 		cocos2d::Vector<cocos2d::RefPtr<SpaceComponent> > componentBox;
-		SpaceEntity* entity;
+		cocos2d::RefPtr<SpaceEntity> entity;
 	};
 }

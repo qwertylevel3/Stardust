@@ -19,6 +19,7 @@ KeycodeDispatcher::~KeycodeDispatcher()
 bool KeycodeDispatcher::init()
 {
 	auto listener = cocos2d::EventListenerKeyboard::create();
+
 	listener->onKeyPressed = [=](cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event* event)
 	{
 		this->handleKeyPressed(keyCode);
@@ -55,5 +56,17 @@ void KeycodeDispatcher::addLinster(KeycodeListener* listener)
 {
 	cocos2d::RefPtr<KeycodeListener> ptr(listener);
 	allListener.pushBack(ptr);
+}
+
+void KeycodeDispatcher::removeLinster(KeycodeListener* listener)
+{
+	for (int i=0;i<allListener.size();i++)
+	{
+		if (allListener.at(i).get()==listener)
+		{
+			allListener.erase(i);
+			return;
+		}
+	}
 }
 

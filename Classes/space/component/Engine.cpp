@@ -4,10 +4,9 @@
 
 
 
-
-
 Space::Engine::Engine(SpaceEntity* e)
 	:SpaceComponent(e)
+	,speed(100)
 {
 
 }
@@ -15,6 +14,26 @@ Space::Engine::Engine(SpaceEntity* e)
 Space::Engine::~Engine()
 {
 
+}
+
+void Space::Engine::setSpeed(int s)
+{
+	speed = s;
+}
+
+int Space::Engine::getSpeed()
+{
+	return speed;
+}
+
+void Space::Engine::handleCommand()
+{
+	std::vector<Command>& commandQueue = entity->getController()->getCommandQueueRef();
+
+	for (int i=0;i<commandQueue.size();i++)
+	{
+		handleCommand(commandQueue[i]);
+	}
 }
 
 void Space::Engine::handleKeyPressed(cocos2d::EventKeyboard::KeyCode keyCode)
@@ -59,26 +78,40 @@ void Space::Engine::handleKeyReleased(cocos2d::EventKeyboard::KeyCode keyCode)
 
 void Space::Engine::update(float delta)
 {
-	b2Vec2 v(0, 0);
 
+	handleCommand();
+
+	b2Vec2 v(0, 0);
 	if (moveUpFlag)
 	{
-		v += b2Vec2(0, 10);
+		v += b2Vec2(0, speed);
 	}
 	if (moveDownFlag)
 	{
-		v += b2Vec2(0, -10);
+		v += b2Vec2(0, -speed);
 	}
 
 	if (moveRightFlag)
 	{
-		v += b2Vec2(10, 0);
+		v += b2Vec2(speed, 0);
 	}
 
 	if (moveLeftFlag)
 	{
-		v += b2Vec2(-10, 0);
+		v += b2Vec2(-speed, 0);
 	}
 
 	entity->SetLinearVelocity(v);
+}
+
+void Space::Engine::handleCommand(const Command& c)
+{
+	if (c.press)
+	{
+		handleKeyPressed(c.keyCode);
+	}
+	else
+	{
+		handleKeyReleased(c.keyCode);
+	}
 }

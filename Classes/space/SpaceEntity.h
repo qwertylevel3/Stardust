@@ -5,9 +5,13 @@
 
 
 #include "Core.h"
+#include "base/CCRefPtr.h"
+
 
 namespace Space
 {
+	class EntityController;
+
 	class SpaceEntity:public cocos2d::Sprite
 	{
 	public:
@@ -17,10 +21,13 @@ namespace Space
 
 		bool init();
 		void setBody(b2Body* b);
+		void setController(cocos2d::RefPtr<EntityController> p);
+		cocos2d::RefPtr<EntityController> getController();
 	    void SetLinearVelocity(b2Vec2 v);
 		void update(float delta);
 	protected:
 		Core core;
 		b2Body* body;
+		cocos2d::RefPtr<EntityController> controller;
 	};
 }

@@ -2,18 +2,20 @@
 
 
 #include "SpaceComponent.h"
-#include "KeycodeListener.h"
+
+#include "space/EntityController.h"
 
 namespace Space
 {
-
-	class Engine :public SpaceComponent,public KeycodeListener
+	class Engine :public SpaceComponent
 	{
 	public:
 		Engine(SpaceEntity* e);
 		~Engine();
-		void handleKeyPressed(cocos2d::EventKeyboard::KeyCode keyCode);
-		void handleKeyReleased(cocos2d::EventKeyboard::KeyCode keyCode);
+		void setSpeed(int s);
+		int getSpeed();
+		void handleCommand();
+
 		void update(float delta);
 
 		void moveUpOn() { moveUpFlag = true; };
@@ -24,12 +26,15 @@ namespace Space
 		void moveLeftOff() { moveLeftFlag = false; };
 		void moveRightOn() { moveRightFlag = true; };
 		void moveRightOff() { moveRightFlag = false; };
-
 	protected:
+		void handleKeyPressed(cocos2d::EventKeyboard::KeyCode keyCode);
+		void handleKeyReleased(cocos2d::EventKeyboard::KeyCode keyCode);
+		void handleCommand(const Command& c);
 		bool moveUpFlag{ false };
 		bool moveDownFlag{ false };
 		bool moveLeftFlag{ false };
 		bool moveRightFlag{ false };
-	
+
+		int speed;
 	};
 }
