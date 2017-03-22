@@ -8,6 +8,8 @@
 #include "GLES-Render.h"
 #include "SpaceEntity.h"
 #include "EntityFactory.h"
+#include "space/ContactListener.h"
+
 
 //////////////////////////////////////////////////////////////////////////
 //DebugDrawCommand
@@ -40,6 +42,7 @@ Space::MainLayer::MainLayer()
 Space::MainLayer::~MainLayer()
 {
 	CC_SAFE_DELETE(world);
+	CC_SAFE_DELETE(contactListener);
 }
 
 bool Space::MainLayer::init()
@@ -87,6 +90,9 @@ void Space::MainLayer::initPhy()
 	uint32 flags = 0;
 	flags += b2Draw::e_shapeBit;
 	debugDrawFlag->SetFlags(flags);
+
+	contactListener = new ContactListener();
+	world->SetContactListener(contactListener);
 }
 
 void Space::MainLayer::addEneity(SpaceEntity* entity)

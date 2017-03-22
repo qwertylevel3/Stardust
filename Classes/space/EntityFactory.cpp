@@ -49,19 +49,19 @@ void Space::EntityFactory::createEntityPhy(MainLayer* layer, SpaceEntity* entity
 	bodyDef.position.Set(entity->getPosition().x
 		, entity->getPosition().y);
 	b2Body *body = phyWorld->CreateBody(&bodyDef);
+	body->SetType(b2_kinematicBody);
 
-	body->SetUserData(entity);
-	entity->setBody(body);
 
-	b2PolygonShape dynamicBox;
-	dynamicBox.SetAsBox(
+	b2PolygonShape collisionBox;
+	collisionBox.SetAsBox(
 		entity->getCollisionSize().width,
 		entity->getCollisionSize().height
 	);
 
 	b2FixtureDef fixtureDef;
-	fixtureDef.shape = &dynamicBox;
-	fixtureDef.density = 1.0f;
-	fixtureDef.friction = 0.3f;
+	fixtureDef.shape = &collisionBox;
 	body->CreateFixture(&fixtureDef);
+
+	body->SetUserData(entity);
+	entity->setBody(body);
 }

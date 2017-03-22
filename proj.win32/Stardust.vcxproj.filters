@@ -63,6 +63,7 @@
     <ClCompile Include="..\Classes\space\EntityController.cpp">
       <Filter>src\space</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\space\ContactListener.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -116,6 +117,7 @@
     <ClInclude Include="..\Classes\space\EntityController.h">
       <Filter>src\space</Filter>
     </ClInclude>
+    <ClInclude Include="..\Classes\space\ContactListener.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game.rc">

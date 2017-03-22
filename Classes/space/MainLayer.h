@@ -11,6 +11,7 @@ namespace Space
 {
 	class SpaceShip;
 	class SpaceEntity;
+	class ContactListener;
 
 	//////////////////////////////////////////////////////////////////////////
 	//DebugDrawCommand
@@ -51,6 +52,7 @@ namespace Space
 		cocos2d::Vector<SpaceEntity*> allEntity;
 
 		b2World* world;
+		ContactListener* contactListener;
 		DebugDrawCommand command;
 	};
 }

@@ -6,7 +6,7 @@
 
 Space::Engine::Engine(SpaceEntity* e)
 	:SpaceComponent(e)
-	,speed(100)
+	,speed(200)
 {
 
 }
