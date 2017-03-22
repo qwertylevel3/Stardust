@@ -2,14 +2,10 @@
 #include "physics/CCPhysicsBody.h"
 #include "EntityController.h"
 
-
-
 Space::SpaceEntity::SpaceEntity()
-	:body(nullptr),core(this)
+	:body(nullptr), core(this)
 {
-
 }
-
 
 Space::SpaceEntity::~SpaceEntity()
 {
@@ -34,8 +30,14 @@ void Space::SpaceEntity::update(float delta)
 {
 	controller->update();
 	core.update(delta);
-	controller->clearCommandQueue();
 
+	if (body)
+	{
+		this->setPosition(cocos2d::Vec2(body->GetPosition().x
+			, body->GetPosition().y));
+		this->setRotation(-1 * CC_RADIANS_TO_DEGREES(body->GetAngle()));
+	}
+	controller->clearCommandQueue();
 }
 
 void Space::SpaceEntity::setController(cocos2d::RefPtr<EntityController> p)

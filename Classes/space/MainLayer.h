@@ -4,7 +4,7 @@
 #include "Box2D/Box2D.h"
 #include "base/CCVector.h"
 
-#define	PTM_RATIO 1
+
 
 
 namespace Space
@@ -44,6 +44,7 @@ namespace Space
 		CREATE_FUNC(MainLayer);
 		void addEneity(SpaceEntity* entity);
 		void draw(cocos2d::Renderer *renderer, const cocos2d::Mat4& transform, uint32_t flags);
+		b2World* getPhyWorld() { return world; };
 	protected:
 		void initPhy();
 

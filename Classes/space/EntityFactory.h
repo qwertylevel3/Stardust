@@ -7,6 +7,7 @@
 namespace Space
 {
 	class MainLayer;
+	class SpaceEntity;
 
 	class EntityFactory :public Singleton<EntityFactory>
 	{
@@ -16,6 +17,6 @@ namespace Space
 		void createPlayer(MainLayer* layer);
 		void createTestEnemy(MainLayer* layer);
 	protected:
-
+		void createEntityPhy(MainLayer* layer, SpaceEntity* entity);
 	};
 }
