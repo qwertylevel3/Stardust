@@ -47,3 +47,13 @@ cocos2d::RefPtr<Space::EntityController> Space::SpaceEntity::getController()
 {
 	return controller;
 }
+
+void Space::SpaceEntity::setCollisionSize(cocos2d::Size s)
+{
+	collisionSize = s;
+}
+
+cocos2d::Size Space::SpaceEntity::getCollisionSize()
+{
+	return collisionSize;
+}

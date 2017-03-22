@@ -119,7 +119,10 @@ void Space::MainLayer::addEneity(SpaceEntity* entity)
 	entity->setBody(body);
 
 	b2PolygonShape dynamicBox;
-	dynamicBox.SetAsBox(entity->getContentSize().width, entity->getContentSize().height);
+	dynamicBox.SetAsBox(
+		entity->getCollisionSize().width,
+		entity->getCollisionSize().height
+	);
 
 	// 夹具定义
 	b2FixtureDef fixtureDef;

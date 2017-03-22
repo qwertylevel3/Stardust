@@ -22,6 +22,8 @@ namespace Space
 		bool init();
 		void setBody(b2Body* b);
 		void setController(cocos2d::RefPtr<EntityController> p);
+		void setCollisionSize(cocos2d::Size s);
+		cocos2d::Size getCollisionSize();
 		cocos2d::RefPtr<EntityController> getController();
 	    void SetLinearVelocity(b2Vec2 v);
 		void update(float delta);
@@ -29,5 +31,7 @@ namespace Space
 		Core core;
 		b2Body* body;
 		cocos2d::RefPtr<EntityController> controller;
+		//Åö×²ºÐ´óÐ¡
+		cocos2d::Size collisionSize;
 	};
 }

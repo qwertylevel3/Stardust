@@ -15,5 +15,7 @@ namespace Space
 		~EntityFactory();
 		void createPlayer(MainLayer* layer);
 		void createTestEnemy(MainLayer* layer);
+	protected:
+
 	};
 }

@@ -57,8 +57,12 @@
     <ClCompile Include="..\Classes\space\component\Engine.cpp">
       <Filter>src\space\component</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\space\EntityController.cpp" />
-    <ClCompile Include="..\Classes\space\PlayerController.cpp" />
+    <ClCompile Include="..\Classes\space\PlayerController.cpp">
+      <Filter>src\space</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\space\EntityController.cpp">
+      <Filter>src\space</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -106,8 +110,12 @@
     <ClInclude Include="..\Classes\space\component\Engine.h">
       <Filter>src\space\component</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\space\EntityController.h" />
-    <ClInclude Include="..\Classes\space\PlayerController.h" />
+    <ClInclude Include="..\Classes\space\PlayerController.h">
+      <Filter>src\space</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\space\EntityController.h">
+      <Filter>src\space</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game.rc">
