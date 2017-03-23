@@ -27,7 +27,9 @@ namespace Space
 		std::vector<Command>& getCommandQueueRef();
 	protected:
 		cocos2d::Vector<cocos2d::RefPtr<SpaceComponent> > componentBox;
-		cocos2d::RefPtr<SpaceEntity> entity;
+//		cocos2d::RefPtr<SpaceEntity> entity;
+
+		SpaceEntity* entity;
 
 		std::vector<Command> commandQueue;
 	};

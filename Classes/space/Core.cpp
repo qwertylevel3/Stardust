@@ -7,7 +7,7 @@
 
 Space::Core::Core(SpaceEntity* e)
 {
-	entity = cocos2d::RefPtr<SpaceEntity>(e);
+	entity = e;
 	cocos2d::RefPtr<SpaceComponent> ptr(new Engine(e));
 	componentBox.pushBack(ptr);
 }

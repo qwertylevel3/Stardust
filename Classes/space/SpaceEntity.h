@@ -30,8 +30,11 @@ namespace Space
 		cocos2d::Size getCollisionSize();
 		void setCore(cocos2d::RefPtr<Core> c);
 		cocos2d::RefPtr<Core> getCore();
-	    void SetLinearVelocity(b2Vec2 v);
 		void update(float delta);
+		b2Body* getBody();
+
+		void setDead(bool d) { dead = d; }
+		bool isDead() { return dead; }
 	protected:
 		b2Body* body;
 		cocos2d::RefPtr<Core> core;
@@ -39,5 +42,6 @@ namespace Space
 		cocos2d::Size collisionSize;
 
 		Type type;
+		bool dead{ false };
 	};
 }

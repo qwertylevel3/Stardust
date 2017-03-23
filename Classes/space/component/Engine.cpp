@@ -1,7 +1,7 @@
 #include "Engine.h"
 #include "Box2D/Common/b2Math.h"
 #include "space/SpaceEntity.h"
-#include <iostream>
+#include "space/SpaceMarcos.h"
 
 
 
@@ -82,6 +82,7 @@ void Space::Engine::update(float delta)
 	handleCommand();
 
 	b2Vec2 v(0, 0);
+
 	if (moveUpFlag)
 	{
 		v += b2Vec2(0, speed);
@@ -90,19 +91,29 @@ void Space::Engine::update(float delta)
 	{
 		v += b2Vec2(0, -speed);
 	}
-
 	if (moveRightFlag)
 	{
 		v += b2Vec2(speed, 0);
 	}
-
 	if (moveLeftFlag)
 	{
 		v += b2Vec2(-speed, 0);
 	}
 
 
-	entity->SetLinearVelocity(v);
+//	cocos2d::Vec2 position = entity->getPosition();
+//	entity->setPosition(
+//		position.x+=v.x,
+//		position.y+=v.y
+//	);
+
+	b2Body* body = entity->getBody();
+	b2Vec2 tv = body->GetLinearVelocity();
+	if (abs(tv.x-v.x)<0.1 && abs(tv.y-v.y)<0.1)
+	{
+		return;
+	}
+	body->SetLinearVelocity(v);
 }
 
 void Space::Engine::handleCommand(const Command& c)

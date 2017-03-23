@@ -2,7 +2,8 @@
 
 #include "2d/CCLayer.h"
 #include "Box2D/Box2D.h"
-#include "base/CCVector.h"
+
+#include <vector>
 
 
 
@@ -49,7 +50,7 @@ namespace Space
 	protected:
 		void initPhy();
 
-		cocos2d::Vector<SpaceEntity*> allEntity;
+		std::vector<SpaceEntity*> allEntity;
 
 		b2World* world;
 		ContactListener* contactListener;

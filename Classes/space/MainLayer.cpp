@@ -11,7 +11,6 @@
 #include "space/ContactListener.h"
 #include "space/SpaceMarcos.h"
 
-
 //////////////////////////////////////////////////////////////////////////
 //DebugDrawCommand
 //////////////////////////////////////////////////////////////////////////
@@ -68,9 +67,23 @@ void Space::MainLayer::update(float delta)
 
 	world->Step(timeStep, velocityIterations, positionIterations);
 
-	for each (SpaceEntity* entity in allEntity)
+	std::vector<SpaceEntity*>::iterator iter = allEntity.begin();
+
+	while (iter != allEntity.end())
 	{
-		entity->update(delta);
+		(*iter)->update(delta);
+
+		if ((*iter)->isDead())
+		{
+			world->DestroyBody((*iter)->getBody());
+
+			(*iter)->removeFromParent();
+			iter = allEntity.erase(iter);
+		}
+		else
+		{
+			iter++;
+		}
 	}
 }
 
@@ -99,16 +112,16 @@ void Space::MainLayer::initPhy()
 void Space::MainLayer::addEneity(SpaceEntity* entity)
 {
 	this->addChild(entity);
-	allEntity.pushBack(entity);
+	allEntity.push_back(entity);
 }
 
 void Space::MainLayer::draw(cocos2d::Renderer *renderer, const cocos2d::Mat4& transform, uint32_t flags)
 {
 	enableVertexAttribs(cocos2d::GL::VERTEX_ATTRIB_FLAG_POSITION);
 
-//	command.init(_globalZOrder);
-//	command.setWorld(world);
-//	renderer->addCommand(&command);
+	command.init(_globalZOrder);
+	command.setWorld(world);
+	renderer->addCommand(&command);
 
 	CHECK_GL_ERROR_DEBUG();
 }

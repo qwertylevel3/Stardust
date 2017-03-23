@@ -2,6 +2,7 @@
 #include "physics/CCPhysicsBody.h"
 #include "space/SpaceMarcos.h"
 
+
 Space::SpaceEntity::SpaceEntity()
 	:body(nullptr), core(nullptr)
 {
@@ -21,10 +22,6 @@ void Space::SpaceEntity::setBody(b2Body* b)
 	body = b;
 }
 
-void Space::SpaceEntity::SetLinearVelocity(b2Vec2 v)
-{
-	body->SetLinearVelocity(v);
-}
 
 void Space::SpaceEntity::update(float delta)
 {
@@ -63,3 +60,10 @@ void Space::SpaceEntity::setCore(cocos2d::RefPtr<Core> c)
 {
 	core = c;
 }
+
+b2Body* Space::SpaceEntity::getBody()
+{
+	return body;
+}
+
+
