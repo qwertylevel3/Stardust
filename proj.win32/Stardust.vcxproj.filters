@@ -118,6 +118,9 @@
       <Filter>src\space</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\space\ContactListener.h" />
+    <ClInclude Include="..\Classes\space\SpaceMarcos.h">
+      <Filter>src\space</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game.rc">

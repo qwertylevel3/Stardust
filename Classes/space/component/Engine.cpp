@@ -1,12 +1,13 @@
 #include "Engine.h"
 #include "Box2D/Common/b2Math.h"
 #include "space/SpaceEntity.h"
+#include <iostream>
 
 
 
 Space::Engine::Engine(SpaceEntity* e)
 	:SpaceComponent(e)
-	,speed(200)
+	,speed(10)
 {
 
 }
@@ -78,7 +79,6 @@ void Space::Engine::handleKeyReleased(cocos2d::EventKeyboard::KeyCode keyCode)
 
 void Space::Engine::update(float delta)
 {
-
 	handleCommand();
 
 	b2Vec2 v(0, 0);

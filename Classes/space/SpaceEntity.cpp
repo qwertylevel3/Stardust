@@ -1,6 +1,7 @@
 #include "SpaceEntity.h"
 #include "physics/CCPhysicsBody.h"
 #include "EntityController.h"
+#include "space/SpaceMarcos.h"
 
 Space::SpaceEntity::SpaceEntity()
 	:body(nullptr), core(this)
@@ -31,10 +32,15 @@ void Space::SpaceEntity::update(float delta)
 	controller->update();
 	core.update(delta);
 
+
 	if (body)
 	{
-		this->setPosition(cocos2d::Vec2(body->GetPosition().x
-			, body->GetPosition().y));
+		this->setPosition(
+			cocos2d::Vec2(
+				body->GetPosition().x*PTM_RATIO,
+				body->GetPosition().y*PTM_RATIO
+			)
+		);
 		this->setRotation(-1 * CC_RADIANS_TO_DEGREES(body->GetAngle()));
 	}
 	controller->clearCommandQueue();

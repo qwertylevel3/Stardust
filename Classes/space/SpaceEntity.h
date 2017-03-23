@@ -15,6 +15,10 @@ namespace Space
 	class SpaceEntity:public cocos2d::Sprite
 	{
 	public:
+		enum Type 
+		{
+			SHIP,BULLET
+		};
 		SpaceEntity();
 		~SpaceEntity();
 		CREATE_FUNC(SpaceEntity);
@@ -30,8 +34,11 @@ namespace Space
 	protected:
 		Core core;
 		b2Body* body;
+		//std::shared_ptr<b2Body> body;
 		cocos2d::RefPtr<EntityController> controller;
 		//Åö×²ºÐ´óÐ¡
 		cocos2d::Size collisionSize;
+
+		Type type;
 	};
 }

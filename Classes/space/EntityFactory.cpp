@@ -6,6 +6,8 @@
 #include "MainLayer.h"
 #include "PlayerController.h"
 
+#include "space/SpaceMarcos.h"
+
 Space::EntityFactory::EntityFactory()
 {
 }
@@ -46,20 +48,21 @@ void Space::EntityFactory::createEntityPhy(MainLayer* layer, SpaceEntity* entity
 
 	b2BodyDef bodyDef;
 	bodyDef.type = b2_dynamicBody;
-	bodyDef.position.Set(entity->getPosition().x
-		, entity->getPosition().y);
+	bodyDef.position.Set(
+		entity->getPosition().x/PTM_RATIO,
+		entity->getPosition().y/PTM_RATIO
+	);
 	b2Body *body = phyWorld->CreateBody(&bodyDef);
-	body->SetType(b2_kinematicBody);
-
 
 	b2PolygonShape collisionBox;
 	collisionBox.SetAsBox(
-		entity->getCollisionSize().width,
-		entity->getCollisionSize().height
+		entity->getCollisionSize().width/PTM_RATIO,
+		entity->getCollisionSize().height/PTM_RATIO
 	);
 
 	b2FixtureDef fixtureDef;
 	fixtureDef.shape = &collisionBox;
+	fixtureDef.isSensor = true;
 	body->CreateFixture(&fixtureDef);
 
 	body->SetUserData(entity);

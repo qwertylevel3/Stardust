@@ -9,6 +9,7 @@
 #include "SpaceEntity.h"
 #include "EntityFactory.h"
 #include "space/ContactListener.h"
+#include "space/SpaceMarcos.h"
 
 
 //////////////////////////////////////////////////////////////////////////
@@ -61,9 +62,9 @@ bool Space::MainLayer::init()
 
 void Space::MainLayer::update(float delta)
 {
-	float timeStep = 0.03f;
-	int32 velocityIterations = 8;
-	int32 positionIterations = 1;
+	float timeStep = 1.0f / 60.0f;
+	int32 velocityIterations = 10;
+	int32 positionIterations = 10;
 
 	world->Step(timeStep, velocityIterations, positionIterations);
 
@@ -84,7 +85,7 @@ void Space::MainLayer::initPhy()
 	world->SetAllowSleeping(true);
 	world->SetContinuousPhysics(true);
 
-	auto debugDrawFlag = new GLESDebugDraw(1);   //这里新建一个 debug渲染模块
+	auto debugDrawFlag = new GLESDebugDraw(PTM_RATIO);   //这里新建一个 debug渲染模块
 
 	world->SetDebugDraw(debugDrawFlag);
 	uint32 flags = 0;

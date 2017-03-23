@@ -177,6 +177,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\space\MainLayer.h" />
     <ClInclude Include="..\Classes\space\PlayerController.h" />
     <ClInclude Include="..\Classes\space\SpaceEntity.h" />
+    <ClInclude Include="..\Classes\space\SpaceMarcos.h" />
     <ClInclude Include="..\Classes\space\SpaceScene.h" />
     <ClInclude Include="..\Classes\space\ZOrder.h" />
     <ClInclude Include="main.h" />
