@@ -4,7 +4,7 @@
 
 #include "SpaceEntity.h"
 #include "MainLayer.h"
-#include "PlayerController.h"
+#include "PlayerCore.h"
 
 #include "space/SpaceMarcos.h"
 
@@ -22,7 +22,9 @@ void Space::EntityFactory::createPlayer(Space::MainLayer* layer)
 	entity->initWithFile("space/testShip.png");
 	entity->setCollisionSize(cocos2d::Size(10, 10));
 	entity->setPosition(512, 100);
-	entity->setController(cocos2d::RefPtr<EntityController>(new PlayerController()));
+	cocos2d::RefPtr<Core> ptr(new PlayerCore(entity));
+
+	entity->setCore(ptr);
 
 	createEntityPhy(layer, entity);
 
@@ -34,7 +36,10 @@ void Space::EntityFactory::createTestEnemy(MainLayer* layer)
 	SpaceEntity* entity = SpaceEntity::create();
 	entity->initWithFile("space/testShip2.png");
 	entity->setPosition(512, 600);
-	entity->setController(cocos2d::RefPtr<EntityController>(new EntityController()));
+
+	cocos2d::RefPtr<Core> ptr(new Core(entity));
+	entity->setCore(ptr);
+
 	entity->setCollisionSize(cocos2d::Size(20, 20));
 
 	createEntityPhy(layer, entity);
@@ -62,6 +67,8 @@ void Space::EntityFactory::createEntityPhy(MainLayer* layer, SpaceEntity* entity
 
 	b2FixtureDef fixtureDef;
 	fixtureDef.shape = &collisionBox;
+	fixtureDef.density = 10;
+	fixtureDef.friction = 0.3;
 	fixtureDef.isSensor = true;
 	body->CreateFixture(&fixtureDef);
 

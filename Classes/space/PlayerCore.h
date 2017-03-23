@@ -1,15 +1,15 @@
 #pragma once
 
-#include "space/EntityController.h"
+#include "space/Core.h"
 #include "KeycodeListener.h"
 
 namespace Space
 {
-	class PlayerController :public EntityController,public KeycodeListener
+	class PlayerCore :public Core,public KeycodeListener
 	{
 	public:
-		PlayerController();
-		~PlayerController();
+		PlayerCore(SpaceEntity* entity);
+		~PlayerCore();
 		void handleKeyPressed(cocos2d::EventKeyboard::KeyCode keyCode);
 		void handleKeyReleased(cocos2d::EventKeyboard::KeyCode keyCode);
 	};

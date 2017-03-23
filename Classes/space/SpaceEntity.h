@@ -28,14 +28,13 @@ namespace Space
 		void setController(cocos2d::RefPtr<EntityController> p);
 		void setCollisionSize(cocos2d::Size s);
 		cocos2d::Size getCollisionSize();
-		cocos2d::RefPtr<EntityController> getController();
+		void setCore(cocos2d::RefPtr<Core> c);
+		cocos2d::RefPtr<Core> getCore();
 	    void SetLinearVelocity(b2Vec2 v);
 		void update(float delta);
 	protected:
-		Core core;
 		b2Body* body;
-		//std::shared_ptr<b2Body> body;
-		cocos2d::RefPtr<EntityController> controller;
+		cocos2d::RefPtr<Core> core;
 		//Åö×²ºÐ´óÐ¡
 		cocos2d::Size collisionSize;
 

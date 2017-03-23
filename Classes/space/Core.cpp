@@ -25,3 +25,13 @@ void Space::Core::update(float delta)
 	}
 }
 
+void Space::Core::clearCommandQueue()
+{
+	commandQueue.clear();
+}
+
+std::vector<Space::Command>& Space::Core::getCommandQueueRef()
+{
+	return commandQueue;
+}
+

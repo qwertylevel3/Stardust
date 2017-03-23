@@ -29,7 +29,7 @@ int Space::Engine::getSpeed()
 
 void Space::Engine::handleCommand()
 {
-	std::vector<Command>& commandQueue = entity->getController()->getCommandQueueRef();
+	std::vector<Command>& commandQueue = entity->getCore()->getCommandQueueRef();
 
 	for (int i=0;i<commandQueue.size();i++)
 	{
@@ -100,6 +100,7 @@ void Space::Engine::update(float delta)
 	{
 		v += b2Vec2(-speed, 0);
 	}
+
 
 	entity->SetLinearVelocity(v);
 }

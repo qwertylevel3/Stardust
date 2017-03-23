@@ -106,9 +106,9 @@ void Space::MainLayer::draw(cocos2d::Renderer *renderer, const cocos2d::Mat4& tr
 {
 	enableVertexAttribs(cocos2d::GL::VERTEX_ATTRIB_FLAG_POSITION);
 
-	command.init(_globalZOrder);
-	command.setWorld(world);
-	renderer->addCommand(&command);
+//	command.init(_globalZOrder);
+//	command.setWorld(world);
+//	renderer->addCommand(&command);
 
 	CHECK_GL_ERROR_DEBUG();
 }

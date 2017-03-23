@@ -3,7 +3,7 @@
 
 #include "SpaceComponent.h"
 
-#include "space/EntityController.h"
+#include "space/Core.h"
 
 namespace Space
 {
